@@ -37,14 +37,12 @@ public class MenuBehaviour : MonoBehaviour {
         Transform curTarget;
 
         if (slideLeft){
-            Debug.Log("Instructed to slide to left");
             curSpeed = speed;
             curTarget = leftChecker.transform;
             StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true, true));
 
         }
         else{
-            Debug.Log("Instructed to slide to right");
             curSpeed = speed;
             curTarget = rightChecker.transform;
             StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, false, true));

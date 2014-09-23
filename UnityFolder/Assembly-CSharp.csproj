@@ -164,6 +164,8 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITiledSprite.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+     <Compile Include="Assets\Scripts\ButtonBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CategoryOptions.cs" />
      <Compile Include="Assets\Scripts\LikeDislike.cs" />
      <Compile Include="Assets\Scripts\MenuBehaviour.cs" />
      <Compile Include="Assets\Scripts\MenuHandler.cs" />
