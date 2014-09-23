@@ -3,12 +3,12 @@ using System.Collections;
 
 public class LikeDislike : MonoBehaviour {
 
-    private Pictures pictureScript;
+    private Pictures pictureLikedislike;
 
 	// Use this for initialization
 	void Start () {
 
-        pictureScript = GameObject.Find("AC3").GetComponent<Pictures>();
+        pictureLikedislike = GameObject.Find("AC3").GetComponent<Pictures>();
 	
 	}
 	
@@ -19,16 +19,16 @@ public class LikeDislike : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(Screen.width / 2 + 35, 150, 60, 30), "Dislike") && pictureScript.curPicture==true)
+        if (GUI.Button(new Rect(Screen.width / 2 + 35, 150, 60, 30), "Dislike"))
         {
             Debug.Log("Clicked Dislike");
-            pictureScript.dislike++;
+            pictureLikedislike.dislike++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2 -95, 150, 60, 30), "Like") && pictureScript.curPicture==true)
+        if (GUI.Button(new Rect(Screen.width / 2 -95, 150, 60, 30), "Like"))
         {
             Debug.Log("Clicked Like");
-            pictureScript.like++;
+            pictureLikedislike.like++;
             Destroy(gameObject);
         }
     }
