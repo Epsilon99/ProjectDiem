@@ -6,15 +6,25 @@ public class MenuBehaviour : MonoBehaviour {
     public float speed;
     private GameObject rightChecker;
     private GameObject leftChecker;
-    private GameObject midChecker;
+    public GameObject midChecker;
     private Transform thisTransform;
+    private Transform curTarget;
+
+    private bool areWeMoving;
+
+    public bool isThisFirstScreen;
 
 	// Use this for initialization
-	void Start () {
-        thisTransform = transform;
+    void Awake() {
         rightChecker = GameObject.FindGameObjectWithTag("RightChecker");
         leftChecker = GameObject.FindGameObjectWithTag("LeftChecker");
         midChecker = GameObject.FindGameObjectWithTag("MidChecker");
+    }
+
+	void Start () {
+        thisTransform = transform;
+        if (!isThisFirstScreen)
+            gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -27,21 +37,17 @@ public class MenuBehaviour : MonoBehaviour {
         Transform curTarget;
 
         if (slideLeft){
-            curSpeed = -speed;
+            Debug.Log("Instructed to slide to left");
+            curSpeed = speed;
             curTarget = leftChecker.transform;
-            while (thisTransform.position.x > curTarget.position.x) {
-                thisTransform.Translate(Vector2.right * curSpeed * Time.deltaTime);
-            }
-            gameObject.SetActive(false);
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true, true));
+
         }
         else{
+            Debug.Log("Instructed to slide to right");
             curSpeed = speed;
             curTarget = rightChecker.transform;
-            while (thisTransform.position.x < curTarget.position.x)
-            {
-                thisTransform.Translate(Vector2.right * curSpeed * Time.deltaTime);
-            }
-            gameObject.SetActive(false);
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, false, true));
         }
     }
 
@@ -51,16 +57,34 @@ public class MenuBehaviour : MonoBehaviour {
 
         if (slideFromLeft){
             curSpeed = speed;
-            while (thisTransform.position.x < curTarget.position.x) {
-                thisTransform.Translate(Vector2.right * curSpeed * Time.deltaTime);
-            }
+            areWeMoving = true;
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, false, false));
         }
         else{
-            curSpeed = -speed;
-            while (thisTransform.position.x > curTarget.position.x)
-            {
-                thisTransform.Translate(Vector2.right * curSpeed * Time.deltaTime);
-            }
+            curSpeed = speed;
+            areWeMoving = true;
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true, false));
         }
+    }
+
+    IEnumerator SlideAndDeactivate(float movementSpeed,Transform targetToMoveTo,bool slideLeft,bool deactive){
+
+        Vector2 startPosition = thisTransform.position;
+        float i = 0.0f;
+        float rate = 1.0f / movementSpeed;
+
+        while (i < 1.0)
+        {
+            yield return new WaitForEndOfFrame();
+            i = i + (Time.deltaTime * rate);
+            thisTransform.position = Vector2.Lerp(startPosition, targetToMoveTo.position, i);
+        }
+
+        if(deactive)
+            gameObject.SetActive(false);
+
+        curTarget = null;
+        areWeMoving = false;
+
     }
 }

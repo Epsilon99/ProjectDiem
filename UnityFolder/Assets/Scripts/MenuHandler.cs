@@ -29,6 +29,9 @@ public class MenuHandler : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.RightArrow)){
             ChangeChoosenSreen(Menu2,true);
         }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)&& Menu3 != null) {
+            ChangeChoosenSreen(Menu3, false);
+        }
 
         Controls();
         
@@ -41,6 +44,7 @@ public class MenuHandler : MonoBehaviour {
             {
                 curMenu.GetComponent<MenuBehaviour>().SlideToTheSide(false);
                 ChoosenScreen.GetComponent<MenuBehaviour>().SlideToCenter(true);
+                Menu3 = curMenu;
                 curMenu = ChoosenScreen;
                 areWeSwitching = false;
                 ChoosenScreen = null;
@@ -48,6 +52,7 @@ public class MenuHandler : MonoBehaviour {
             else {
                 curMenu.GetComponent<MenuBehaviour>().SlideToTheSide(true);
                 ChoosenScreen.GetComponent<MenuBehaviour>().SlideToCenter(false);
+                Menu3 = curMenu;
                 curMenu = ChoosenScreen;
                 areWeSwitching = false;
                 ChoosenScreen = null;
