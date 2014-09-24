@@ -165,6 +165,8 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\Scripts\ButtonBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CameraButtonBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\CategoryOptions.cs" />
      <Compile Include="Assets\Scripts\LikeDislike.cs" />
      <Compile Include="Assets\Scripts\MenuBehaviour.cs" />
