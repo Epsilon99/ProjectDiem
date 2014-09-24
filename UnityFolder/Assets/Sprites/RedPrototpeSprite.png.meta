@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 248a502889680514bb95838fb9dfcceb
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: RedPrototpeSprite
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
