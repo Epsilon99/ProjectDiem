@@ -6,8 +6,17 @@ public class Rating : MonoBehaviour {
     public GameObject likeDislike;
     public GameObject categoryOptions;
 
+    public Pictures pictureLikedislike;
+
 	// Use this for initialization
 	void Start () {
+
+        pictureLikedislike = GameObject.Find("AC3").GetComponent<Pictures>();
+        //prints the saved playerpref from last time
+        print(PlayerPrefs.GetInt("Nature Count"));
+        //sets the above playerpref to the new value on the picture
+        pictureLikedislike.nature = PlayerPrefs.GetInt("Nature Count");
+	
 	
 	}
 	
@@ -31,4 +40,5 @@ public class Rating : MonoBehaviour {
         }
 
     }
+
 }

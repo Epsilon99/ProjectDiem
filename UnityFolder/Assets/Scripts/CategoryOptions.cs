@@ -19,37 +19,37 @@ public class CategoryOptions : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height/10, 60, 30), "Nature"))
+        if (GUI.Button(new Rect(Screen.width / 2.8f, Screen.height / 10, 80, 30), "Nature") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked Nature");
             pictureLikedislike.nature++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 5, 60, 30), "Art"))
+        if (GUI.Button(new Rect(Screen.width / 2.8f, Screen.height / 5, 80, 30), "Art") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked Art");
             pictureLikedislike.art++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 3, 60, 30), "Culture"))
+        if (GUI.Button(new Rect(Screen.width / 2.8f, Screen.height / 3, 80, 30), "Culture") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked Culture");
             pictureLikedislike.culture++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 2, 60, 30), "People"))
+        if (GUI.Button(new Rect(Screen.width / 2.8f, Screen.height / 2, 80, 30), "People") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked People");
             pictureLikedislike.people++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 1.7f, 60, 30), "Architecture"))
+        if (GUI.Button(new Rect(Screen.width / 2.8f, Screen.height / 1.7f, 80, 30), "Architecture") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked Architecturee");
             pictureLikedislike.architecture++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 1.5f, 60, 30), "18+"))
+        if (GUI.Button(new Rect(Screen.width / 2.8f, Screen.height / 1.5f, 80, 30), "18+") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked 18+");
             pictureLikedislike.explicitCategory++;

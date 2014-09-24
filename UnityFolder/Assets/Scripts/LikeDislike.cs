@@ -19,13 +19,13 @@ public class LikeDislike : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(Screen.width / 2 + 35, 150, 60, 30), "Dislike"))
+        if (GUI.Button(new Rect(Screen.width / 2 + 35, 150, 60, 30), "Dislike") && pictureLikedislike.curPicture==true)
         {
             Debug.Log("Clicked Dislike");
             pictureLikedislike.dislike++;
             Destroy(gameObject);
         }
-        if (GUI.Button(new Rect(Screen.width / 2 -95, 150, 60, 30), "Like"))
+        if (GUI.Button(new Rect(Screen.width / 2 - 95, 150, 60, 30), "Like") && pictureLikedislike.curPicture == true)
         {
             Debug.Log("Clicked Like");
             pictureLikedislike.like++;

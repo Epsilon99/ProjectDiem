@@ -18,15 +18,18 @@ public class Pictures : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        like = 0;
-        dislike = 0;
+        //prints the saved playerpref from last time
+        print(PlayerPrefs.GetInt("Nature Count"));
 
-        nature = 0;
-        art = 0;
-        culture = 0;
-        people = 0;
-        architecture = 0;
-        explicitCategory = 0;
+        like = PlayerPrefs.GetInt("Like Count");
+        dislike = PlayerPrefs.GetInt("Dislike Count");
+
+        nature = PlayerPrefs.GetInt("Nature Count");
+        art = PlayerPrefs.GetInt("Art Count");
+        culture = PlayerPrefs.GetInt("Culture Count");
+        people = PlayerPrefs.GetInt("People Count");
+        architecture = PlayerPrefs.GetInt("Architecture Count");
+        explicitCategory = PlayerPrefs.GetInt("Explicit Count");
 	
 	}
 	
@@ -35,8 +38,35 @@ public class Pictures : MonoBehaviour {
         if (transform.position.x == 0)
         {
             curPicture = true;
-            totalScore = like - dislike;
+        }
+        totalScore = like - dislike;
+        //resets playerprefs
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            like = 0;
+            dislike = 0;
+
+            nature = 0;
+            art = 0;
+            culture = 0;
+            people = 0;
+            architecture = 0;
+            explicitCategory = 0;
         }
 	
 	}
+    void OnApplicationQuit()
+    {
+        //saves the category playerprefs
+        PlayerPrefs.SetInt("Nature Count", nature);
+        PlayerPrefs.SetInt("Art Count", art);
+        PlayerPrefs.SetInt("Culture Count", culture);
+        PlayerPrefs.SetInt("People Count", people);
+        PlayerPrefs.SetInt("Architecture Count", architecture);
+        PlayerPrefs.SetInt("Explicit Count", explicitCategory);
+        print(PlayerPrefs.GetInt("Nature Count"));
+
+        PlayerPrefs.SetInt("Like Count", like);
+        PlayerPrefs.SetInt("Dislike Count", dislike);
+    }
 }
