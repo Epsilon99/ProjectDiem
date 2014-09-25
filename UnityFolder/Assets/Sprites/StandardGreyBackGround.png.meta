@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 69d9ed61e147cfa46b836f8fed14337a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: StandardGreyBackGround
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

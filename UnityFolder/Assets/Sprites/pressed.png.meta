@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 248a502889680514bb95838fb9dfcceb
+guid: 14e051dd5a4ad8c4fb5a288f170ff90b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RedPrototpeSprite
+    21300000: pressed
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -18,14 +18,14 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: 5
+  maxTextureSize: 4096
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 1
     mipBias: -1
     wrapMode: 1
