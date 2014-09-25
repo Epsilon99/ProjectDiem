@@ -6,13 +6,14 @@ public class CameraScript : MonoBehaviour {
     public Texture defaultTexture;
     public WebCamDevice[] devices;
     public WebCamTexture webcamTexture;
-
-
     private string directory;
     int captureCounter = 0;
 
+    public GameObject ImageHandlerGO;
+
     void Awake() {
-        directory = Application.persistentDataPath + "/pictures";
+        directory = Application.persistentDataPath;
+
     }
 
     void OnEnable() {
@@ -25,15 +26,15 @@ public class CameraScript : MonoBehaviour {
     }
 
     void OnDisable() {
-
         webcamTexture.Stop();
         renderer.material.mainTexture = defaultTexture;
     }
 
 	// Use this for initialization
 	void Start () {
+
         devices = WebCamTexture.devices;
-        webcamTexture = new WebCamTexture();
+        webcamTexture = new WebCamTexture();    
 
         if (devices.Length > 0)
         {
@@ -46,11 +47,14 @@ public class CameraScript : MonoBehaviour {
 
     public void TakeSnapshot()
     {
+        int curImgNumber = ImageHandlerGO.GetComponent<ImgDBHandler>().curImg;
+
         Texture2D snap = new Texture2D(webcamTexture.width, webcamTexture.height);
         snap.SetPixels(webcamTexture.GetPixels());
         snap.Apply();
 
-        System.IO.File.WriteAllBytes(directory + "YourPicture" + captureCounter + ".png", snap.EncodeToPNG());
-        captureCounter++;
+        System.IO.File.WriteAllBytes(directory + "/MyImage" + curImgNumber + ".png", snap.EncodeToPNG());
+
+        ImageHandlerGO.GetComponent<ImgDBHandler>().curImg++;
     }
 }
