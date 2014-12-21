@@ -5,6 +5,8 @@ public class CameraButtonBehaviour : MonoBehaviour {
 
     public GameObject camScreen;
 
+    public bool PicturesTaking, Decline, Accept;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -17,9 +19,19 @@ public class CameraButtonBehaviour : MonoBehaviour {
 
     void OnPress(bool isDown)
     {
-        if (isDown)
+        if (isDown && PicturesTaking)
         {
             camScreen.GetComponent<CameraScript>().TakeSnapshot();
+        }
+
+        if (isDown && Decline)
+        {
+            camScreen.GetComponent<CameraScript>().DeclinePicture();  
+        }
+
+        if (isDown && Accept)
+        {
+            camScreen.GetComponent<CameraScript>().AcceptPicture();
         }
 
     }

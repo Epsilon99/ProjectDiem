@@ -6,7 +6,7 @@ public class ImgDBHandler : MonoBehaviour {
 
     private string directory;
     private bool areWeSearching;
-    public int curImg = 0;
+    public int curImg = 1;
 
     public GameObject GridThumbnail;
 
@@ -30,24 +30,27 @@ public class ImgDBHandler : MonoBehaviour {
         }
 
         if(curImg!=0)
-            derpFace();
+            ChangeGrid();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
-    private void derpFace(){
+    private void ChangeGrid() {
+        GameObject[] grids = GameObject.FindGameObjectsWithTag("Thumbnail");
 
-        Debug.Log("herpe de derpede");
-
-        int imageToPrint = Random.Range(0,curImg);
-        string pathToImage = directory + "/MyImage" + imageToPrint + ".png";
-        var bytes = File.ReadAllBytes(pathToImage);
-        Texture2D imgTexture = new Texture2D(73,73);
-        imgTexture.LoadImage(bytes);
-        GridThumbnail.renderer.material.mainTexture = imgTexture;
+        foreach(GameObject obj in grids){
+            int imageToPrint = Random.Range(1, curImg);
+            string pathToImage = directory + "/MyImage" + imageToPrint + ".png";
+            var bytes = File.ReadAllBytes(pathToImage);
+            Texture2D imgTexture = new Texture2D((int)obj.renderer.bounds.size.x, (int)obj.renderer.bounds.size.y);
+            imgTexture.LoadImage(bytes);
+            obj.renderer.material.mainTexture = imgTexture;
+            obj.GetComponent<Thumbnail>().ImagePath = pathToImage;
+            obj.GetComponent<Thumbnail>().ImageNumber = imageToPrint;
+        }
     }
 }

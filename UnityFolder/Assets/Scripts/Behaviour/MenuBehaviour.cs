@@ -6,7 +6,9 @@ public class MenuBehaviour : MonoBehaviour {
     public float speed;
     private GameObject rightChecker;
     private GameObject leftChecker;
-    public GameObject midChecker;
+    private GameObject midChecker;
+    private GameObject botChecker;
+    private GameObject topCecker;
     private Transform thisTransform;
     private Transform curTarget;
 
@@ -14,22 +16,26 @@ public class MenuBehaviour : MonoBehaviour {
 
     public bool isThisFirstScreen;
 
+
 	// Use this for initialization
     void Awake() {
+        thisTransform = transform;
         rightChecker = GameObject.FindGameObjectWithTag("RightChecker");
         leftChecker = GameObject.FindGameObjectWithTag("LeftChecker");
         midChecker = GameObject.FindGameObjectWithTag("MidChecker");
+        botChecker = GameObject.FindGameObjectWithTag("BotChecker");
+        topCecker = GameObject.FindGameObjectWithTag("TopChecker");
     }
 
 	void Start () {
-        thisTransform = transform;
+        
         if (!isThisFirstScreen)
             gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
 
     public void SlideToTheSide(bool slideLeft) { 
@@ -39,33 +45,45 @@ public class MenuBehaviour : MonoBehaviour {
         if (slideLeft){
             curSpeed = speed;
             curTarget = leftChecker.transform;
-            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true, true));
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true));
 
         }
         else{
             curSpeed = speed;
             curTarget = rightChecker.transform;
-            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, false, true));
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true));
         }
     }
 
-    public void SlideToCenter(bool slideFromLeft) {
-        float curSpeed;
+    public void SlideToCenter() {
+        float curSpeed = speed;
         Transform curTarget = midChecker.transform;
 
-        if (slideFromLeft){
+        areWeMoving = true;
+        StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, false));
+        
+    }
+
+    public void SlideVertically(bool slideDown) {
+        float curSpeed;
+        Transform curTarget;
+
+        if (slideDown)
+        {
             curSpeed = speed;
-            areWeMoving = true;
-            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, false, false));
+            curTarget = botChecker.transform;
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget,  true));
+
         }
-        else{
+        else
+        {
             curSpeed = speed;
-            areWeMoving = true;
-            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true, false));
+            curTarget = topCecker.transform;
+            StartCoroutine(SlideAndDeactivate(curSpeed, curTarget, true));
         }
     }
 
-    IEnumerator SlideAndDeactivate(float movementSpeed,Transform targetToMoveTo,bool slideLeft,bool deactive){
+    IEnumerator SlideAndDeactivate(float movementSpeed,Transform targetToMoveTo,bool deactive){
 
         Vector2 startPosition = thisTransform.position;
         float i = 0.0f;

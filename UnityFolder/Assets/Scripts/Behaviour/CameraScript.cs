@@ -10,6 +10,7 @@ public class CameraScript : MonoBehaviour {
     int captureCounter = 0;
 
     public GameObject ImageHandlerGO;
+    public GameObject CameraStateHandlerGO;
 
     void Awake() {
         directory = Application.persistentDataPath;
@@ -45,8 +46,7 @@ public class CameraScript : MonoBehaviour {
 	}
 
 
-    public void TakeSnapshot()
-    {
+    public void AcceptPicture() {
         int curImgNumber = ImageHandlerGO.GetComponent<ImgDBHandler>().curImg;
 
         Texture2D snap = new Texture2D(webcamTexture.width, webcamTexture.height);
@@ -56,5 +56,22 @@ public class CameraScript : MonoBehaviour {
         System.IO.File.WriteAllBytes(directory + "/MyImage" + curImgNumber + ".png", snap.EncodeToPNG());
 
         ImageHandlerGO.GetComponent<ImgDBHandler>().curImg++;
+
+        ReturnToPictureTaking();
+    }
+
+    public void TakeSnapshot()
+    {
+        webcamTexture.Pause();
+        CameraStateHandlerGO.GetComponent<CameraButtonstateHandler>().SwitchButtons();
+    }
+
+    public void DeclinePicture() {
+        ReturnToPictureTaking();
+    }
+
+    public void ReturnToPictureTaking(){
+        CameraStateHandlerGO.GetComponent<CameraButtonstateHandler>().SwitchButtons();
+        webcamTexture.Play();
     }
 }
